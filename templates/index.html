@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        {% if not username %}
+        <h1>Welcome to Rock Paper Scissors!</h1>
+        <form action="/" method="post">
+            <input type="text" id="username" name="username" placeholder="Enter your username">
+            <button class="btn-submit" type="submit">Submit</button>
+        </form>
+        {% else %}
+        <h1>Welcome, {{ username }}!</h1>
+        <h2>Wins: {{ wins }}</h2> <!-- Display wins only once -->
+        <form action="/" method="post" class="btn-group">
+            <button class="btn-choice" type="submit" name="choice" value="rock">Rock</button>
+            <button class="btn-choice" type="submit" name="choice" value="paper">Paper</button>
+            <button class="btn-choice" type="submit" name="choice" value="scissors">Scissors</button>
+        </form>
+        <form action="/" method="post">
+            <input type="hidden" name="logout" value="true">
+            <button class="btn-logout" type="submit">Logout</button>
+        </form>
+        {% endif %}
+        {% if result %}
+        <div class="result">
+            <h2>Your choice: {{ user_choice }}</h2>
+            <h2>Computer's choice: {{ computer_choice }}</h2>
+            <h2>{{ result }}</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
